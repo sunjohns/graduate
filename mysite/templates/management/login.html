@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+	<h1>Login</h1>
+	<p>Input your username and password</p>
+	<form class="form-horizontal" action="." method="post">
+        {{ form.as_p }}
+        <input type="submit" value="login">
+        <hr>
+        <span>其他方式登陆:</span><a href="/oauth/github_login/"><img src="/static/images/github.jpg" width="50" height="30"></a>
+
+    </form>
+    <hr>
+    <p>Forgot your password? <a href="/management/password-reset">reset password</a></p>
+
+    <p>If you had not a username, <a href="/management/register">Register to be a user, please</a></p>
+</div>
+{% endblock %}

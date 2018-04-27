@@ -1,0 +1,68 @@
+<!--<div class="pagination">
+  <span class="step-links">
+    {% if page.has_previous %}
+    <a href="?page={{ page.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span class="current">
+      Page {{ page.number }} of {{ page.paginator.num_pages }}
+    </span>
+    {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}">Next</a>
+    {% endif %}
+  </span>
+</div>-->
+{# 博文之前的就照常加载，这部分我只是简单写出来，略过，重点是分页部分 #}
+{% for article in articles %}
+    {{article.caption}}
+    {# 过滤掉HTML标签和处理HTML转义，输出前100个字符 #}
+    {{article.content|striptags|safe|truncatechars:100}}
+{% endfor %}
+
+{# 分页部分 #}
+<div>
+    <small class="blog_footer_tip">
+        共{{pages.count}}篇博文，共{{pages.num_pages}}页
+    </small>
+
+    <ul class="pagination">
+        {# 上一页，这里需要用到has_previous方法判断是否有上一页 #}
+        <li>
+            <a href="?page=
+                {% if articles.has_previous %}
+                    {{articles.previous_page_number}}
+                {% else %}
+                    {{articles.number}}
+                {% endif %}
+            " aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        {# 遍历所有页码 #}
+        {% for page in pages.page_range %}
+            <li><a href="?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+
+        {# 下一页，这里需要用到has_next方法判断是否有下一页 #}
+        <li>
+            <a href="?page=
+                {% if articles.has_next %}
+                    {{articles.next_page_number}}
+                {% else %}
+                    {{articles.number}}
+                {% endif %}
+            " aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+
+
+</div>
+
+{% block extra_footer %}
+    {#设置凸显当前的页码#}
+    <script type="text/javascript">
+        $(".pagination li:eq({{articles.number}})").addClass("active");
+    </script>
+{% endblock %}

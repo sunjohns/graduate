@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<link href="/static/css/shouye/css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="/static/css/shouye/js/jquery.min.js"></script>
+		 <!-- Custom Theme files -->
+		<link href="/static/css/shouye/css/style.css" rel='stylesheet' type='text/css' />
+        <link href="https://cdn.bootcss.com/layer/3.1.0/theme/default/layer.css" rel="stylesheet">
+   		 <!-- Custom Theme files -->
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script src="{% static 'js/jquery.js'%}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+
+		<!----webfonts--->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700,800,400,600' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+		<!---//webfonts--->
+	</head>
+	<body>
+		<!-- container -->
+			<!-- header -->
+			<div class="header">
+				<div class="container">
+				<!-- logo -->
+				<!--<div class="logo">
+					<img src="/static/images/pao10.jpg" width="120px">
+				</div>-->
+				<!-- logo -->
+				<!-- cart-info -->
+				<div class="cart-info">
+					<ul>
+                        {% if user.is_authenticated %}
+		              <li>
+                         <div class="dropdown" style="margin-top:8px">
+                            <button class='btn btn-default' type='button' id='dropdownMenu' data-toggle='dropdown'>Hi!    {{ user.username }}<span class='caret'></span></button>
+                             <ul class="dropdown-menu">
+                               <li><a href="/management/password-change">Modify passwd</a></li>
+                               <li><a href="/management/edit-my-information">edit_Infomation</a></li>
+                               <li><a href="/management/my-information">Infomation</a></li>
+                               <li><a href="/management/logout">Logout </a></li>
+                             </ul>
+                         </div>
+
+                      </li>
+
+		                  {% else %}
+		                       <li><a href="/management/login">Login</a></li>
+                               <li><a href="/management/register">Sign up</a></li>
+                          {% endif %}
+						<div class="clearfix"> </div>
+					</ul>
+
+				</div>
+				<!-- /cart-info -->
+
+			</div>
+			<!-- header -->
+		</div>
+		<!-- sub-header -->
+		<div class="sub-header">
+			<div class="container">
+				<!-- top-nav -->
+				<div class="top-nav">
+					<span class="menu"> </span>
+					<ul>
+                        <li><a class="navbar-brand" href="#">PRIVATE</a></li>
+                        <li><a href="/image/images">图片</a></li>
+                        <li><a href="/home">HOME</a></li>
+{#                        <li><a href="/">blog</a></li>#}
+                        <li><a href="/article/list-article-titles">文章</a></li>
+                        <li><a href="/article/article-column">添加文章</a></li>
+                        <li><a href="/course/course-list">课程</a></li>
+                        <li><a href="/course/manage-course">发表课程</a></li>
+                        <li><a href="/course/about">关于本站</a></li>
+                        <form action="{% url 'article:search'%}" class="navbar-form navbar-right">
+                      <input name="wd" type="text" placeholder="搜索博文" class="form-control">
+                             <button type="submit" class="btn btn-primary">
+                                 <span>搜索</span>
+                             </button>
+                    </form>
+
+					</ul>
+
+				</div>
+            </div>
+        </div>

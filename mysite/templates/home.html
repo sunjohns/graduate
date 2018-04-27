@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+				<!-- script-for-nav -->
+				<script>
+					$(document).ready(function(){
+						$("span.menu").click(function(){
+							$(".top-nav ul").slideToggle(300);
+						});
+					});
+				</script>
+				<!-- script-for-nav -->
+				<!-- search-form -->
+
+				<div class="clearfix"> </div>
+				<!-- /search-form -->
+			</div>
+		</div>
+		<!-- /sub-header -->
+		<!-- banner -->
+		<div class="banner">
+			<!--- img-slider --->
+				<div class="img-slider">
+						<!----start-slider-script---->
+					<script src="/static/css/shouye/js/responsiveslides.min.js"></script>
+					 <script>
+					    // You can also use "$(window).load(function() {"
+					    $(function () {
+					      // Slideshow 4
+					      $("#slider4").responsiveSlides({
+					        auto: true,
+					        pager: true,
+					        nav: true,
+					        speed: 500,
+					        namespace: "callbacks",
+					        before: function () {
+					          $('.events').append("<li>before event fired.</li>");
+					        },
+					        after: function () {
+					          $('.events').append("<li>after event fired.</li>");
+					        }
+					      });
+
+					    });
+					  </script>
+					<!----//End-slider-script---->
+					<!-- Slideshow 4 -->
+					    <div  id="top" class="callbacks_container">
+					      <ul class="rslides" id="slider4">
+					        <li>
+					          <img class="/static/css/shouye/images/img-responsive" src="http://www.desktx.cc/d/file/wallpaper/People/males/20170328/3b8659249278812978ef07645155e5c9.jpg" alt="">
+					        </li>
+					        <li>
+					          <img src="/static/css/shouye/images/slide2.jpg" alt="">
+					        </li>
+					        <li>
+					          <img src="/static/css/shouye/images/slide.jpg" alt="">
+					        </li>
+					      </ul>
+					    </div>
+					    <div class="clearfix"> </div>
+					</div>
+						<!-- slider -->
+		</div>
+		<!-- banner -->
+		<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >手机网站模板</a></div>
+		<!-- Welcome-note -->
+		<div class="Welcome-note">
+			<div class="Welcome-note-left">
+				<!--<div class="Welcome-note-left-pic">
+					<img src="/static/css/shouye/images/pic1.png" title="name" />
+				</div>-->
+				<div class="Welcome-note-left-pic-info">
+					<p>study python<span>reading book</span> is a good thing</p>
+				</div>
+			</div>
+			<div class="Welcome-note-right">
+				<p>what is<span>python</span></p>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!-- Welcome-note -->
+		<!-- content -->
+		<div class="content">
+			<!-- top-grids -->
+			<div class="top-grids">
+			<div class="container">
+				<div class="product-grids">
+					<!---
+						<!----sreen-gallery-cursual---->
+							 <!-- requried-jsfiles-for owl -->
+							<link href="/static/css/shouye/css/owl.carousel.css" rel="stylesheet">
+							    <script src="/static/css/shouye/js/owl.carousel.js"></script>
+							        <script>
+							    $(document).ready(function() {
+							      $("#owl-demo").owlCarousel({
+							        items : 5,
+							        lazyLoad : true,
+							        autoPlay : true,
+							        navigation : true,
+							        navigationText :  false,
+							        pagination : false,
+							      });
+							    });
+							    </script>
+							 <!-- //requried-jsfiles-for owl -->
+							 <!-- start content_slider -->
+						       <div id="owl-demo" class="owl-carousel text-center">
+					                <!--<div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao9.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>-->
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao8.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao7.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao6.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao5.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao4.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					               <!-- <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao3.jpg.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>-->
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao2.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+					                <div onclick="location.href='details.html';" class="item">
+					                	<div class="product-grid">
+											<div class="product-pic">
+												<a href="#"><img src="/static/images/pao1.jpg" title="name" /></a>
+											</div>
+											<div class="product-pic-info">
+												<p>blog</p>
+											</div>
+										</div>
+					                </div>
+				              </div>
+			</div>
+		</div>
+		</div>
+		<!-- top-grids -->
+		<!-- content -->
+		<!-- footer -->
+		<div class="footer">
+			<div class="footer-grids">
+				<div class="container">
+					<div class="col-md-3 footer-grid">
+						<h4>Services</h4>
+						<ul>
+
+							<li><a href="#">Buy it only $1500</a></li>
+							<li><a href="#">View your Collections</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 footer-grid">
+						<h4>Information</h4>
+						<ul>
+							<li><a href="#">Author Infomation</a></li>
+
+						</ul>
+					</div>
+					<div class="col-md-3 footer-grid">
+						<h4>More details</h4>
+						<ul>
+
+							<li><a href="#">About Python</a></li>
+							<li><a href="#">About Django</a></li>
+							<li><a href="#">About bootstrap</a></li>
+							<li><a href="#">About redis</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 footer-grid contact-grid">
+						<h4>Contact me</h4>
+						<ul>
+
+							<li><span class="c-icon1"> </span><a href="#">1090271342@qq.com</a></li>
+							<li><span class="c-icon2"> </span>15616389189</li>
+						</ul>
+						<ul class="social-icons">
+
+							<li><a href="#"><span class="glyphicon "> </span></a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- news-letter -->
+		<!--<div class="container">
+			<div class="news-letter">
+					<div class="news-letter-left">
+						<a href="#"><span> </span> News letter</a>
+					</div>
+					<div class="news-letter-right">
+						<p>Subscribe to notification about disconunts anf Offers from our store enter your Email id :</p>
+						<form>
+							<input type="text" class="text" value="Enter your mail id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your mail id';}">
+							<input type="submit" value="" />
+						</form>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- news-letter -->
+        </div>
+        </div>
+{% endblock %}

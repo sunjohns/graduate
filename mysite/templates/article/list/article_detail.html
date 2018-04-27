@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% load article_tags %}
+{% load staticfiles %}
+{% load comments %}
+
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+
+{% with total_likes=article.users_like.count users_like=article.users_like.all %}
+
+<div class="container">
+<div class="col-md-9">
+    <header>
+        <div class="row text-center vertical-middle-sm">
+            <h1>{{ article.title }}</h1><small><p> <span style="margin-right: 10px"><strong>Tags:</strong></span> {{ article.article_tag.all | join:", "}}</p></small>
+        </div>
+
+	    <div class="col-xs-12 col-md-8">
+            <p><span>作者：<button class="btn btn-info"><a href="{% url 'article:author_articles' article.author.username %}">{{ article.author.username }}</a></button></span>
+               <span style="margin-left: 20px"><p>更新：{{ article.updated }}</p></span></p>
+
+	    </div>
+
+
+
+        <p>
+            <span style="margin-left:20px" class="glyphicon glyphicon-thumbs-up">{{ total_likes }}like{{ total_likes | pluralize }}</span>
+            <span style="margin-left: 20px">{{ total_views }}view{{ total_views | pluralize }}</span>
+        </p>
+    <iframe src="http://www.todayonhistory.com/code/6.html?w=250&h=20&bky=dotted&bks=0&fs=14&fc=#565656&hg=14&ie=0&xhx=none&sd=300&px=3&len=0&sk=1&n=0"
+                            width="250" height="15" scrolling="no" frameborder="0" allowtransparency="true"></iframe></button>
+
+    </header>
+
+    <link rel="stylesheet" href="{% static 'editor/css/editormd.preview.css' %}" />
+    <div id='editormd-view'>
+        <textarea id="append-test" style="display:none;">
+{{ article.body }}
+        </textarea>
+<!--{{ article.body | markdown }}-->
+    </div>
+     <div>
+        <p class="text-center">
+            <a onclick="like_article({{article.id}}, 'like')" href="#"><span class="glyphicon glyphicon-thumbs-up">赞</span></a>
+            <a onclick="like_article({{article.id}}, 'unlike')" href="#"><span style="margin-left: 15px;" class="glyphicon glyphicon-thumbs-down">取消赞</span></a>
+        </p>
+    </div>
+
+
+
+{#      <div class="feed" id="feed1">#}
+{#        <p>W3C </p>#}
+{#        <div class="heart " id="like1" rel="like"></div>#}
+{#               <div class="likeCount" id="likeCount1">14</div>#}
+{#        </div>#}
+{#    <div class="feed" id="feed2">#}
+{#        <p>百度一下</p>#}
+{#        <div class="heart" id="like2" rel="like"></div>#}
+{#                <div class="likeCount" id="likeCount2">10</div>#}
+{#        </div>#}
+
+
+
+
+    <div>
+        <p class="text-center"><strong>点赞本文的读者</strong></p>
+        {% for user in article.users_like.all %}
+        <p class="text-center">{{ user.username }}</p>
+        {% empty %}
+        <p class="text-center">还没有人对此文章表态</p>
+        {% endfor %}
+    </div>
+    <hr>
+
+
+<div class="panel panel-default">
+
+<div class="panel-heading">
+        <h4>匿名评论列表</h4>
+
+
+        <!--<h3><span class="glyphicon glyphicon-bullhorn"></span>本文有如下评论：</h3>-->
+        {% for comment in article.comments.all %}
+        <div>
+            <p><strong>{{ comment.commentator }}</strong>说：</p>
+            <p style="margin-left:40px;">{{ comment.body }}</p>
+        </div>
+        {% empty %}
+            <img src="/static/images/h.gif"  width="100px">
+        <small>来交流吧！！！</small>
+        {% endfor %}
+    </div>
+
+        <h3><span class="glyphicon glyphicon-send"></span>看文章，发评论，不要沉默</h3>
+        <form action="." method="post" class="form-horizontal" role="form">{% csrf_token %}
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">评论员</label>
+                <div class="col-sm-10">
+                    {{ comment_form.commentator}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">评论</label>
+                <div class="col-sm-10">
+                    {{ comment_form.body }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <p><input type="submit" name="" value="发评论" class="btn btn-primary"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-3 col-xs-12 blog-border">
+
+                <iframe id="tianqi" scrolling="no" frameborder="0" allowtransparency="true"
+                        src="http://i.tianqi.com/index.php?c=code&a=getcode&id=34&h=25&w=280"></iframe>
+
+    <div class="side-list">
+                <h4>
+                    <span class="glyphicon glyphicon-book"></span>
+                    最受欢迎文章
+                </h4>
+    <ul>
+        {% for article_rank in most_viewed %}
+        <li>
+            <p><a href="{{article_rank.get_url_path}}">{{ article_rank.title }}</a></p>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="side-list">
+                <h4>
+                    <span class="glyphicon glyphicon-book"></span>
+                    最新文章
+                </h4>
+    <div>{% latest_articles 4 %}</div>
+    </div>
+
+
+      <div class="side-list">
+                <h4>
+                    <span class="glyphicon glyphicon-book"></span>
+                    最多评论文章
+                </h4>
+    {% most_commented_articles as most_comments %}
+    <div><ul>
+        {% for comment_article in most_comments %}
+        <li>
+            <p><a href="{{comment_article.get_url_path}}">{{ comment_article.title }}</a></p>
+        </li>
+        {% endfor %}
+    </ul></div>
+      </div>
+
+      <div class="side-list">
+                <h4>
+                    <span class="glyphicon glyphicon-book"></span>
+                    推荐相似文章
+                </h4>
+    <div>
+        {% for similar in similar_articles %}
+        <p><a href="{{ similar.get_url_path }}">{{ similar.title }}</a></p>
+        {% empty %}
+        <p>Sorry, 没有相似文章</p>
+        {% endfor %}
+    </div>
+      </div>
+
+
+</div>
+
+
+</div>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/editor/lib/marked.min.js"></script>
+<script src="/static/editor/lib/prettify.min.js"></script>
+<script src="/static/editor/lib/raphael.min.js"></script>
+<script src="/static/editor/lib/underscore.min.js"></script>
+<script src="/static/editor/lib/sequence-diagram.min.js"></script>
+<script src="/static/editor/lib/flowchart.min.js"></script>
+<script src="/static/editor/lib/jquery.flowchart.min.js"></script>
+<script src="/static/editor/editormd.js"></script>
+<script type="text/javascript" src="/static/js/layer.js"></script>
+<script type="text/javascript">
+$(function(){
+	editormd.markdownToHTML("editormd-view", {
+        htmlDecode      : "style,script,iframe",  // you can filter tags decode
+        emoji           : true,
+        taskList        : true,
+        tex             : true,  // 默认不解析
+        flowChart       : true,  // 默认不解析
+        sequenceDiagram : true,  // 默认不解析
+    });
+});
+
+
+function like_article(id,action){
+    $.ajax({
+        url: "{% url 'article:like_article' %}",
+        type: "POST",
+        data: {"id":id, "action":action},
+        success: function(e){
+            if(e=="1"){
+                layer.msg("感谢点赞");
+                window.location.reload();
+            }else{
+                layer.msg("我会继续努力");
+                window.location.reload();
+            }
+        },
+    });
+}
+
+
+$(document).ready(function() {
+$('body').on("click",'.heart',function(){
+    var A=$(this).attr("id");
+    var B=A.split("like");
+    var messageID=B[1];
+    var C=parseInt($("#likeCount"+messageID).html());
+    var D=$(this).attr("rel");//如果为Like则执行动画
+    if(D =='like')
+    {
+            $("#likeCount"+messageID).html(C+1);
+            $(this).addClass("heartAnimation").attr("rel","unlike");
+        $(this).css("background-position","right");
+                //不加这句有bug，动画最后又会到了起点，点击后强制使图片停在最右边，
+    }
+    else
+    {
+            $("#likeCount"+messageID).html(C-1);
+            $(this).removeClass("heartAnimation").attr("rel","like");
+            $(this).css("background-position","left");
+               //点击后强制使红心变黑，否则显示悬停状态的红色的心
+    }
+});
+});
+
+
+
+
+
+
+
+
+
+</script>
+{% endwith %}
+{% endblock %}
