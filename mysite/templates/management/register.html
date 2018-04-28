@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row text-center vertical-middle-sm">
     <h1>Register</h1>
-    <p>If you are a user, <strong><a href="/management/login">Login</a></strong>,please</p>
+    <p>If you are a user, <strong><button class="btn btn-success"><a href="/management/login">Login</a></button></strong>,please</p>
     <p>or register.</p>
     <form class="form-horizontal" action="." method="post">{% csrf_token %}
         <div class="form-group">

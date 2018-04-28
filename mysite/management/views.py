@@ -42,8 +42,7 @@ def register(request):
             new_profile.user = new_user
             new_profile.save()
             UserInfo.objects.create(user=new_user)
-            return HttpResponseRedirect(reverse("management:user_login"))
-            #return HttpResponseRedirect("/management/login")
+            return HttpResponseRedirect("/management/login")
         else:
             return HttpResponse("sorry, your can not register.")
     else:

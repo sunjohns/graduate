@@ -155,7 +155,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = '1090271342@qq.com'
-EMAIL_HOST_PASSWORD = 'sypwcxgcdhovfhja'
+EMAIL_HOST_PASSWORD = 'poqrfaamyvxkiicb'
 
 
 REDIS_HOST = 'localhost'

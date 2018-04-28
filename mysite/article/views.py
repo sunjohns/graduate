@@ -14,6 +14,7 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from article.models import ArticleTag
 from article.forms import ArticleTagForm
 import json
+from django.contrib.auth.models import User
 
 
 # articles=ArticlePost.objects.all()
@@ -107,7 +108,50 @@ def article_post(request):
 
 
 @login_required(login_url='/management/login')
-def article_list(request):
+def article_list(request,username=None):
+    # data={}
+    # if username:
+    #     user = User.objects.get(username=username)
+    #     articles_title = ArticlePost.objects.filter(author=user)
+    #     try:
+    #         userinfo = user.userinfo
+    #         data["userinfo"]=userinfo
+    #         data["user"]=user
+    #     except:
+    #         userinfo = None
+    # else:
+    #     articles_title = ArticlePost.objects.all()
+    #
+    # #articles_title = ArticlePost.objects.all()
+    # # paginator = Paginator(articles_title, 5)
+    # # page = request.GET.get('page')
+    # # try:
+    # #     current_page = paginator.page(page)
+    # #     articles = current_page.object_list
+    # # except PageNotAnInteger:
+    # #     current_page = paginator.page(1)
+    # #     articles = current_page.object_list
+    # # except EmptyPage:
+    # #     current_page = paginator.page(paginator.num_pages)
+    # #     articles = current_page.object_list
+    # current_page = request.GET.get("page", 1)
+    #
+    # # articles = ArticlePost.objects.all()
+    # pages = Paginator(articles_title, 7)
+    # articles = pages.page(current_page)
+    #
+    # data["articles"] = articles
+    # data["pages"] = pages
+    #
+    #
+    #
+    # return render(request, "article/column/article_list.html", data)
+
+
+
+
+
+
     """show blogs' list"""
 
     # 获取GET请求的参数，得到当前页码。若没有该参数，默认为1

@@ -61,8 +61,8 @@ def article_titles(request, username=None):
     #     articles = current_page.object_list
     current_page = request.GET.get("page", 1)
 
-    articles = ArticlePost.objects.all()
-    pages = Paginator(articles, 7)
+    # articles = ArticlePost.objects.all()
+    pages = Paginator(articles_title, 7)
     articles = pages.page(current_page)
 
     data["articles"] = articles
