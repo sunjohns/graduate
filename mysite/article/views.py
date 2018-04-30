@@ -108,7 +108,7 @@ def article_post(request):
 
 
 @login_required(login_url='/management/login')
-def article_list(request,username=None):
+def article_list(request):
     # data={}
     # if username:
     #     user = User.objects.get(username=username)
@@ -165,6 +165,24 @@ def article_list(request,username=None):
 
 
     return render_to_response('article/column/article_list.html',{"user":request.user,"articles":articles,"pages":pages})
+
+
+def author_list(request, username=None):
+    data={}
+    user = User.objects.get(username=username)
+    articles_title = ArticlePost.objects.filter(author=user)
+    current_page = request.GET.get("page", 1)
+    data["user"] = user
+
+
+    pages = Paginator(articles_title, 7)  # 7个对象为1页，这个参数可以写在settings.py里面
+    articles = pages.page(current_page)  # 获得当前页的数据
+    data["articles"] = articles
+    data["pages"] = pages
+    return render_to_response("article/column/author_list.html",data)
+
+
+
 
 
 @login_required(login_url='/management/login')
